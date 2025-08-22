@@ -3,12 +3,12 @@ import "./Login.css";
 
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { auth } from '../firebase';
+import { auth } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import googleLogo from '../assets/GoogleLogo.png';
+import googleLogo from '../../assets/GoogleLogo.png';
 
 const Login = () => {
     const navigate = useNavigate();
