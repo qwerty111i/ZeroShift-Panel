@@ -1,0 +1,74 @@
+.panel-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(17, 25, 28);
+    height: 100vh;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    height: 500px;
+    background-color: rgb(57, 78, 84);
+    border-radius: 20px;
+}
+
+.panel .status-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(99, 116, 129);
+    width: 40%;
+    height: 200px;
+    border-radius: 15px;
+}
+
+.panel .status-box h2 {
+    align-self: center;
+    justify-self: center;
+}
+
+.panel .buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.panel .buttons .start-btn,
+.panel .buttons .stop-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 60px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.panel .buttons .start-btn {
+    background-color: rgb(39, 143, 63);
+    margin-right: 30px;
+}
+
+.panel .buttons .start-btn:hover {
+    background-color: rgb(22, 108, 43);
+}
+
+.panel .buttons .stop-btn {
+    background-color: rgb(143, 45, 45);
+    margin-left: 30px;
+}
+
+.panel .buttons .stop-btn:hover {
+    background-color: rgb(110, 31, 31);
+}

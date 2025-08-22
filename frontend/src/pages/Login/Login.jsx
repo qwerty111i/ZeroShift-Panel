@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Login.css";
 
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
@@ -15,19 +15,28 @@ import googleLogo from '../../assets/GoogleLogo.png';
 const db = getFirestore();
 
 const Login = () => {
+    const [error, setError] = useState('');
+
     const navigate = useNavigate();
-    const [signInWithEmailAndPassword, user] = useSignInWithEmailAndPassword(auth);
-    const [signInWithGoogle, gUser] = useSignInWithGoogle(auth);
+    const [signInWithEmailAndPassword, user, loading, emailError] = useSignInWithEmailAndPassword(auth);
+    const [signInWithGoogle, gUser, gLoading, googleError] = useSignInWithGoogle(auth);
 
     const handleSubmit = (e) => {
         e.preventDefault();
     
         // Getting the form values
+        setError('');
         const email = e.target.email.value;
         const password = e.target.password.value;
     
         signInWithEmailAndPassword(email, password);
     };
+
+    useEffect(() => {
+        if (emailError || googleError) {
+            setError('Invalid email or password. Please try again.');
+        }
+    }, [emailError, googleError]);
 
     useEffect(() => {
         const performWhitelistCheck = async (loggedInUser) => {
@@ -40,12 +49,13 @@ const Login = () => {
                 const whitelistDoc = await getDoc(whitelistRef);
 
                 if (!whitelistDoc.exists()) {
-                    alert("Your account does not have permission to access this application.");
+                    setError("Your account does not have permission to access this application.");
                     await signOut(auth);
                 } else {
                     navigate('/panel');
                 }
             } catch (error) {
+                setError("An error occurred while checking permissions.");
                 await signOut(auth);
             }
         };
@@ -58,8 +68,9 @@ const Login = () => {
 
     return (
         <div className="login-page">
+            {error && <div className="error-bar">{error}</div>}
             <div className="login-card">
-                <h1 className="login-title">Login</h1>
+                <h1 className="login-title">ZeroShift Panel Login</h1>
                 <form className="form" onSubmit={handleSubmit}>
                     <div className="form-input">
                         <input 
@@ -76,9 +87,6 @@ const Login = () => {
                             placeholder="Password"
                             required
                         />
-                        {/*<p className="login-text">Don't have an account?&nbsp;*/}
-                        {/*    <Link to="/Signup" className="signup-hyperlink">Sign up!</Link>*/}
-                        {/*</p>*/}
                     </div>
                     <div className="form-right-side">
                         <div className="submit-box">

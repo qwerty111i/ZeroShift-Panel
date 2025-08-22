@@ -1,44 +1,40 @@
 .login-page {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
+    justify-content: center;
     background-color: #1f2421;
+    height: 100vh;
 }
 
-.back-button {
-    position: fixed;
+.error-bar {
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 30px;
-    left: 50px;
-    background-color: rgba(251, 251, 251, 0.39);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    text-decoration: none;
-    color: black;
-}
-
-.back-button:hover {
-    background-color: rgba(255, 255, 255, 0.724);
-}
-
-.back-arrow-icon {
-    font-size: 35px;
+    width: 60%;
+    background-color: #640f0c;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    position: absolute;
+    top: 10px;
+    border-radius: 10px;
 }
 
 .login-card {
-    background-color: #7e6639;
+    display: flex;
+    flex-direction: column;
+    background-color: #39767e;
     padding: 20px;
     border-radius: 10px;
     width: 60%;
-    height: 60%;
+    height: 80%;
 }
 
 .login-title {
+    display: flex;
+    justify-content: center;
     margin-left: 40px;
     font-size: 45px;
     margin-bottom: 35px;
@@ -47,7 +43,7 @@
 
 .form {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .form-input {
@@ -100,7 +96,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
+    margin-top: 50px;
 }
 
 .form-right-side .submit-button {
@@ -118,6 +114,7 @@
     font-size: 28px;
     font-family: "Funnel Display", serif;
     font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .submit-button:hover {
@@ -137,19 +134,19 @@
 .alternate-login-box .google-login-button {
     display: flex;
     flex-direction: row;
-    margin-top: 35px;
     align-items: center;
     justify-content: center;
-    width: 70%;
+    width: 325px;
     height: 55px;
     border-radius: 30px;
     border: 3px solid black;
     cursor: pointer;
     background-color: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .google-login-button:hover {
-    background-color: #8f7349;
+    background-color: #1f4145;
 }
 
 .google-img-box {
