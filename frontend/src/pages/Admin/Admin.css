@@ -1,0 +1,174 @@
+.admin-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.admin-page .back-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(223, 17, 75);
+    display: flex;
+    padding: 10px;
+    width: 150px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.admin-page .back-btn:hover {
+    background-color: rgb(185, 14, 62);
+}
+
+.admin-page .admin-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    height: 70%;
+    background-color: rgb(97, 112, 114);
+    border-radius: 20px;
+}
+
+.admin-page .admin-panel .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    flex: 1;
+    max-height: 70%;
+}
+
+/** Add user styling */
+.admin-page .admin-panel .content .add-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    border-right: 2px solid rgb(233, 233, 233);
+}
+
+.admin-page .admin-panel .content .add-user .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-page .admin-panel .content .add-user .input-form {
+    padding: 10px;
+    margin-right: 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border-color: transparent;
+    background-color: #e1e1e1;
+    color: black;
+    font-size: 18px;
+    font-family: "Funnel Display", serif;
+}
+
+.admin-page .admin-panel .content .add-user .input-container {
+    display: flex;
+    align-items: center;
+}
+
+.admin-page .admin-panel .content .add-user .submit-btn {
+    display: flex;
+    margin-left: 20px;
+    padding: 10px;
+    width: 100px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: rgb(175, 222, 235);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.admin-page .admin-panel .content .add-user .submit-btn:hover {
+    background-color: rgb(141, 181, 192);
+}
+
+/** Current user styling */
+.admin-page .admin-panel .content .current-users {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-height: 100%;
+}
+
+.admin-page .admin-panel .content .current-users ul {
+    width: 90%;
+    background-color: rgba(0, 0, 0, 0.13);
+    margin: 0;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+/** Scrollbar styling */
+.admin-page .admin-panel .content .current-users ul::-webkit-scrollbar {
+  width: 7px;
+}
+
+.admin-page .admin-panel .content .current-users ul::-webkit-scrollbar-track {
+  background: #000000;
+  border-radius: 7px;
+}
+
+.admin-page .admin-panel .content .current-users ul::-webkit-scrollbar-thumb {
+  background: #99c1d0;
+  border-radius: 7px;
+}
+
+.admin-page .admin-panel .content .current-users ul::-webkit-scrollbar-thumb:hover {
+  background: #70919d;
+}
+
+/** User list styling */
+.admin-page .admin-panel .content .current-users .user-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 2px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-page .admin-panel .content .current-users .user-list:last-child {
+    border-bottom: none;
+}
+
+.admin-page .admin-panel .content .current-users .user-list p {
+    margin-right: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.admin-page .admin-panel .content .current-users .user-list span {
+    display: flex;
+    border-radius: 10px;
+    margin-right: 20px;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: rgb(207, 69, 69);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}

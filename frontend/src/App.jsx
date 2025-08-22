@@ -3,6 +3,7 @@ import './App.css'
 
 import Login from './pages/Login/Login';
 import Panel from './pages/Panel/Panel.jsx';
+import Admin from './pages/Admin/Admin.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 function App() {
@@ -15,6 +16,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Panel />
+            </ProtectedRoute>
+          }
+      />
+      <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <Admin />
             </ProtectedRoute>
           }
       />
