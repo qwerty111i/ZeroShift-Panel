@@ -19,3 +19,4 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ZEROSHIFT }}
           channelId: live
           projectId: zeroshift
+          entryPoint: ./frontend/src

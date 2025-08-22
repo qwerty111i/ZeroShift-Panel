@@ -4,7 +4,7 @@ import './Panel.css';
 const API_BASE_URL = 'http://oracleIP:3001';
 
 const Panel = () => {
-    const [status, setStatus] = useState('Checking..');
+    const [status, setStatus] = useState('Checking...');
     const [isLoading, setIsLoading] = useState(false);
 
     const fetchStatus = async () => {
