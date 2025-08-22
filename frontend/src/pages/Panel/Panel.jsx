@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase';
+import io from 'socket.io-client';
 import './Panel.css';
 
 const API_BASE_URL = 'http://oracleIP:3001';
@@ -10,6 +11,29 @@ const Panel = () => {
     const [status, setStatus] = useState('Checking...');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const consoleRef = useRef(null);
+
+    useEffect(() => {
+        const socket = io(API_BASE_URL);
+
+        socket.on('connect', () => {
+            console.log('Connected to log server');
+        });
+
+        socket.on('log', (newLine) => {
+            setLogs(prevLogs => [...prevLogs, newLine]);
+        });
+
+        return () => {
+            socket.disconnect();
+        };
+    }, []);
+
+    useEffect(() => {
+        if (consoleRef.current) {
+            consoleRef.current.scrollTop = consoleRef.current.scrollHeight;
+        }
+    }, [logs]);
 
     const fetchStatus = async () => {
         try {
@@ -107,7 +131,9 @@ const Panel = () => {
                     </div>
                 </div>
                 <div className="console">
-
+                    {logs.map((log, index) => (
+                        <div key={index} className="log-line">{Date.now()} - {log}</div>
+                    ))}
                 </div>
             </div>
         </div>

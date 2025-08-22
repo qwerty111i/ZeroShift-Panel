@@ -168,9 +168,19 @@
 }
 
 .panel-page .console {
-    flex: 1;
     background-color: rgb(0, 0, 0);
+    color: #d4d4d4;
+    font-family:system-ui;
     border-radius: 20px;
     margin-right: 50px;
     margin-left: 25px;
+    padding: 15px;
+    overflow-y: auto;
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.panel-page .log-line {
+    padding-bottom: 5px;
 }

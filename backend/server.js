@@ -1,14 +1,17 @@
 const express = require('express');
-const { exec } = require('child_process'); // Allows running shell commands
+const http = require('http');
+const { exec, spawn } = require('child_process');
+const { Server } = require('socket.io');
 const cors = require('cors');
 
 const app = express();
+const server = http.createServer(app);
 const PORT = 3001;
-
-app.use(cors());
 
 const CONTAINER_NAME = 'zeroshift';
 const IMAGE_NAME = 'something?';
+
+app.use(cors());
 
 app.post('/start', (req, res) => {
     const command = `docker run -d --name ${CONTAINER_NAME} ${IMAGE_NAME}`;
@@ -48,6 +51,32 @@ app.get('/status', (req, res) => {
         } else {
             res.send({ status: 'Offline' });
         }
+    });
+});
+
+const io = new Server(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    }
+});
+
+io.on('connection', (socket) => {
+    // Spawn creates long-running process to stream logs
+    const dockerLogStream = spawn('docker', ['logs', '-f', CONTAINER_NAME]);
+
+    // Sends log data from the container to the client
+    dockerLogStream.stdout.on('data', (data) => {
+        socket.emit('log', data.toString());
+    });
+ 
+    // Sends log errors from the container to the client
+    dockerLogStream.stderr.on('data', (data) => {
+        socket.emit('log', `ERROR: ${data.toString()}`);
+    });
+
+    socket.on('disconnect', () => {
+        dockerLogStream.kill();
     });
 });
 
