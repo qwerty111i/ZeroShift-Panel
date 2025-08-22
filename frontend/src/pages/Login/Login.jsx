@@ -7,8 +7,12 @@ import { auth } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 import googleLogo from '../../assets/GoogleLogo.png';
+
+const db = getFirestore();
 
 const Login = () => {
     const navigate = useNavigate();
@@ -26,19 +30,34 @@ const Login = () => {
     };
 
     useEffect(() => {
-            if (user || gUser) {
-                // Currently redirects to home page after signup
-                navigate('/');
+        const performWhitelistCheck = async (loggedInUser) => {
+            if (!loggedInUser) return;
+
+            const userEmail = loggedInUser.user.email;
+            const whitelistRef = doc(db, "allowedUsers", userEmail);
+
+            try {
+                const whitelistDoc = await getDoc(whitelistRef);
+
+                if (!whitelistDoc.exists()) {
+                    alert("Your account does not have permission to access this application.");
+                    await signOut(auth);
+                } else {
+                    navigate('/panel');
+                }
+            } catch (error) {
+                await signOut(auth);
             }
-        }, [user, navigate, gUser]);
+        };
+
+        if (user || gUser) {
+            performWhitelistCheck(user || gUser);
+        }
+
+    }, [user, gUser, navigate]);
 
     return (
         <div className="login-page">
-            <div className="back-circle">
-                <Link to="/" className="back-button">
-                    <span className="material-icons back-arrow-icon">arrow_back</span>
-                </Link>
-            </div>
             <div className="login-card">
                 <h1 className="login-title">Login</h1>
                 <form className="form" onSubmit={handleSubmit}>
@@ -57,9 +76,9 @@ const Login = () => {
                             placeholder="Password"
                             required
                         />
-                        <p className="login-text">Don't have an account?&nbsp;
-                            <Link to="/Signup" className="signup-hyperlink">Sign up!</Link>
-                        </p>
+                        {/*<p className="login-text">Don't have an account?&nbsp;*/}
+                        {/*    <Link to="/Signup" className="signup-hyperlink">Sign up!</Link>*/}
+                        {/*</p>*/}
                     </div>
                     <div className="form-right-side">
                         <div className="submit-box">
