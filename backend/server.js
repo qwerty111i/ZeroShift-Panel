@@ -9,7 +9,7 @@ const server = http.createServer(app);
 const PORT = 3001;
 
 const CONTAINER_NAME = 'zeroshift';
-const IMAGE_NAME = 'something?';
+const IMAGE_NAME = 'discord-bot';
 
 app.use(cors());
 
