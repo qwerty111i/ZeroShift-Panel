@@ -14,7 +14,7 @@ const CONTAINER_NAME = 'zeroshift';
 app.use(cors());
 
 app.post('/start', (req, res) => {
-    const command = `cd AI-Discord-Bot/ && ./deploy.sh`;
+    const command = `cd /home/ubuntu/AI-Discord-Bot && ./deploy.sh`;
 
     exec(command, (error, stdout, stderr) => {
         if (error) {
@@ -45,7 +45,7 @@ app.get('/status', (req, res) => {
         if (error) {
             return res.status(500).send({ status: 'Error', error: stderr });
         }
-        
+
         if (stdout.split('\n').length > 2) {
             res.send({ status: 'Online' });
         } else {
@@ -69,7 +69,7 @@ io.on('connection', (socket) => {
     dockerLogStream.stdout.on('data', (data) => {
         socket.emit('log', data.toString());
     });
- 
+
     // Sends log errors from the container to the client
     dockerLogStream.stderr.on('data', (data) => {
         socket.emit('log', `ERROR: ${data.toString()}`);
