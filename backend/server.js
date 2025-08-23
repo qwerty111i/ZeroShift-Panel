@@ -56,7 +56,7 @@ app.get('/status', (req, res) => {
 
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: "https://zeroshift.web.app",
         methods: ["GET", "POST"]
     }
 });
