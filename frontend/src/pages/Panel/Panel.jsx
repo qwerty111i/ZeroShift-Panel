@@ -5,7 +5,7 @@ import { auth } from '../../firebase';
 import io from 'socket.io-client';
 import './Panel.css';
 
-const API_BASE_URL = 'http://129.213.166.28:3001';
+const API_BASE_URL = 'https://zeroshift.duckdns.org';
 
 const Panel = () => {
     const [status, setStatus] = useState('Checking...');
