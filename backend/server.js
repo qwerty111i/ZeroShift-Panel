@@ -14,7 +14,7 @@ const CONTAINER_NAME = 'zeroshift';
 app.use(cors());
 
 app.post('/start', (req, res) => {
-    const command = `cd /home/ubuntu/AI-Discord-Bot && ./deploy.sh`;
+    const command = `cd /home/ubuntu/AI-Discord-Bot && git pull && ./deploy.sh`;
 
     exec(command, (error, stdout, stderr) => {
         if (error) {
