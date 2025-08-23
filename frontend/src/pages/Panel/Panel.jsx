@@ -12,6 +12,7 @@ const Panel = () => {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const consoleRef = useRef(null);
+    const [logs, setLogs] = useState([]);
 
     useEffect(() => {
         const socket = io(API_BASE_URL);
