@@ -14,7 +14,7 @@ const IMAGE_NAME = 'discord-bot';
 app.use(cors());
 
 app.post('/start', (req, res) => {
-    const command = `docker run -d --name ${CONTAINER_NAME} ${IMAGE_NAME}`;
+    const command = `sudo docker run -d --name ${CONTAINER_NAME} ${IMAGE_NAME}`;
 
     exec(command, (error, stdout, stderr) => {
         if (error) {
@@ -27,7 +27,7 @@ app.post('/start', (req, res) => {
 });
 
 app.post('/stop', (req, res) => {
-    const command = `docker stop ${CONTAINER_NAME} && docker rm ${CONTAINER_NAME}`;
+    const command = `sudo docker stop ${CONTAINER_NAME} && docker rm ${CONTAINER_NAME}`;
 
     exec(command, (error, stdout, stderr) => {
         if (error) {
@@ -39,7 +39,7 @@ app.post('/stop', (req, res) => {
 });
 
 app.get('/status', (req, res) => {
-    const command = `docker ps -f name=${CONTAINER_NAME}`;
+    const command = `sudo docker ps -f name=${CONTAINER_NAME}`;
 
     exec(command, (error, stdout, stderr) => {
         if (error) {
