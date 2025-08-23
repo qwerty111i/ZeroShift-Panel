@@ -9,12 +9,12 @@ const server = http.createServer(app);
 const PORT = 3001;
 
 const CONTAINER_NAME = 'zeroshift';
-const IMAGE_NAME = 'discord-bot';
+//const IMAGE_NAME = 'discord-bot';
 
 app.use(cors());
 
 app.post('/start', (req, res) => {
-    const command = `docker run zeroshift`;
+    const command = `cd AI-Discord-Bot/ && ./deploy.sh`;
 
     exec(command, (error, stdout, stderr) => {
         if (error) {
