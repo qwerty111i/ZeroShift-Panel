@@ -172,3 +172,68 @@
     color: rgb(207, 69, 69);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+@media (max-width: 1200px) {
+    .admin-page {
+        height: auto;
+        min-height: 100vh;
+        justify-content: flex-start;
+        padding-top: 20px;
+    }
+
+    .admin-page .header-btns {
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+        margin-left: 10%;
+        margin-bottom: 30px;
+    }
+
+    .admin-page .back-btn {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    .admin-page .admin-panel {
+        width: 90%;
+        height: auto;
+        padding-bottom: 20px;
+    }
+
+    .admin-page .admin-panel .content {
+        flex-direction: column;
+        max-height: none;
+        gap: 30px;
+    }
+
+    .admin-page .admin-panel .content .add-user {
+        border-right: none;
+        padding-bottom: 30px;
+        width: 100%;
+    }
+
+    .admin-page .admin-panel .content .add-user .input-container {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .admin-page .admin-panel .content .add-user .input-form,
+    .admin-page .admin-panel .content .add-user .submit-btn {
+        width: 90%;
+        margin: 0;
+        text-align: center;
+    }
+
+    .admin-page .admin-panel .content .current-users ul {
+        max-height: 40vh;
+    }
+
+    .admin-page .admin-panel .content .current-users .user-list p {
+        font-size: 14px;
+    }
+}
