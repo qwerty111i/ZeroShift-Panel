@@ -11,7 +11,6 @@ const Panel = () => {
     const [status, setStatus] = useState('Checking...');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    const consoleRef = useRef(null);
     const [logs, setLogs] = useState([]);
 
     useEffect(() => {
@@ -22,19 +21,14 @@ const Panel = () => {
         });
 
         socket.on('log', (newLine) => {
-            setLogs(prevLogs => [...prevLogs, newLine]);
+            const timestamp = new Date().toLocaleString();
+            setLogs(prevLogs => [...prevLogs, `[${timestamp}] \n${newLine}`]);
         });
 
         return () => {
             socket.disconnect();
         };
     }, []);
-
-    useEffect(() => {
-        if (consoleRef.current) {
-            consoleRef.current.scrollTop = consoleRef.current.scrollHeight;
-        }
-    }, [logs]);
 
     const fetchStatus = async () => {
         try {
@@ -48,11 +42,13 @@ const Panel = () => {
     };
 
     useEffect(() => {
-        fetchStatus();
-        const intervalId = setInterval(fetchStatus, 5000);
+        if (!isLoading) {
+            fetchStatus();
+            const intervalId = setInterval(fetchStatus, 5000);
 
-        return () => clearInterval(intervalId);
-    }, []);
+            return () => clearInterval(intervalId);
+        }
+    }, [isLoading]);
 
     const handleStart = async () => {
         setIsLoading(true);
@@ -114,26 +110,45 @@ const Panel = () => {
             </div>
             <div className="content">
                 <div className="panel">
-                    <h1>Control Panel</h1>
-                    <div className="status-box">
-                        <p>Current Status: </p>
-                        <div className="status">
-                            <span className={`material-icons icon ${getStatusClass()}`}>{getStatusIcon()}</span>
-                            <h2>{status}</h2>
+                    <div className="panel-row-1">
+                        <div className="status-box">
+                            <p>Current Status: </p>
+                            <div className="status">
+                                <span className={`material-icons icon ${getStatusClass()}`}>{getStatusIcon()}</span>
+                                <h2>&nbsp;{status}</h2>
+                            </div>
+                        </div>
+                        <div className="buttons">
+                            <div className="button-row">
+                                <button className="start-btn" onClick={handleStart} disabled={isLoading || status === 'Online'}>
+                                    <p>Start</p>
+                                </button>
+                                <button className="stop-btn" onClick={handleStop} disabled={isLoading || status === 'Offline'}>
+                                    <p>Stop</p>
+                                </button>
+                            </div>
+                            <div className="button-row">
+                                <button className="restart-btn">
+                                    <p>Restart</p>
+                                </button>
+                                <button className="update-btn">
+                                    <p>Update</p>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div className="buttons">
-                        <button className="start-btn" onClick={handleStart} disabled={isLoading || status === 'Online'}>
-                            <p>Start</p>
-                        </button>
-                        <button className="stop-btn" onClick={handleStop} disabled={isLoading || status === 'Offline'}>
-                            <p>Stop</p>
-                        </button>
+                    <div className="panel-row-2">
+                        <div className="cpu-box">
+                            
+                        </div>
+                        <div className="memory-box">
+                            
+                        </div>
                     </div>
                 </div>
                 <div className="console">
                     {logs.map((log, index) => (
-                        <div key={index} className="log-line">{Date.now()} - {log}</div>
+                        <div key={index} className="log-line">{log}</div>
                     ))}
                 </div>
             </div>

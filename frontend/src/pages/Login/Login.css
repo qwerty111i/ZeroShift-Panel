@@ -29,13 +29,12 @@
     padding: 20px;
     border-radius: 10px;
     width: 60%;
-    height: 80%;
+    height: auto;
 }
 
 .login-title {
     display: flex;
     justify-content: center;
-    margin-left: 40px;
     font-size: 45px;
     margin-bottom: 35px;
     font-family: "Funnel Display", serif;
@@ -49,15 +48,17 @@
 .form-input {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     flex: 1;
 }
 
 .form-input .form-field {
-    margin-left: 30px;
     margin-bottom: 20px;
     padding: 16px;
     box-sizing: border-box;
-    width: 90%;
+    width: 70%;
+    max-width: 500px;
     border-radius: 30px;
     border-color: transparent;
     background-color: #e1e1e1;
@@ -85,25 +86,29 @@
     color: #00ffff;
 }
 
-.form-right-side {
+.form-submit {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     flex: 1;
 }
 
-.form-right-side .submit-box {
+.form-submit .submit-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
-.form-right-side .submit-button {
-    display: inline-flex;
+.form-submit .submit-button {
     justify-content: center;
     align-items: center;
-    width: 325px;
+    width: 70%;
+    max-width: 500px;
     height: 55px;
     border-radius: 30px;
     border-color: transparent;
@@ -121,22 +126,13 @@
     background-color: #252525;
 }
 
-.form-right-side .alternate-login-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.or-text {
-    font-weight: 600;
-}
-
-.alternate-login-box .google-login-button {
+.google-login-button {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 325px;
+    width: 70%;
+    max-width: 500px;
     height: 55px;
     border-radius: 30px;
     border: 3px solid black;
@@ -158,4 +154,30 @@
 .google-img {
     width: 40px;
     height: auto;
+}
+
+@media (max-width: 900px) {
+    .login-title {
+        font-size: 35px;
+        line-height: 35px;
+        text-align: center;
+    }
+
+    .google-login-button .google-text {
+        font-size: 18px;
+    }
+
+    .login-card {
+        width: 90%;
+    }
+}
+
+@media (max-width: 550px) {
+    .google-login-button .google-img-box {
+        margin-right: 0;
+    }
+
+    .google-login-button .google-text {
+        display: none;
+    }
 }

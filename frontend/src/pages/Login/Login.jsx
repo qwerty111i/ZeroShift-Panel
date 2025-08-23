@@ -88,19 +88,16 @@ const Login = () => {
                             required
                         />
                     </div>
-                    <div className="form-right-side">
+                    <div className="form-submit">
                         <div className="submit-box">
                             <input className="submit-button" type="submit" value="Login" />
                         </div>
-                        <div className="alternate-login-box">
-                            <p className="or-text">OR</p>
-                            <div className="google-login-button" onClick={() => signInWithGoogle()}>
-                                <div className="google-img-box">
-                                    <img className="google-img" src={googleLogo}/>
-                                </div>
-                                <p className="google-text">Login with Google</p>
+                        <div className="google-login-button" onClick={() => signInWithGoogle()}>
+                            <div className="google-img-box">
+                                <img className="google-img" src={googleLogo}/>
                             </div>
-                        </div>                        
+                            <p className="google-text">Login with Google</p>
+                        </div>
                     </div>
                 </form>
             </div>
