@@ -21,3 +21,7 @@ html, body {
 a {
   color: #000000;
 }
+
+button {
+  color: rgb(0, 0, 0);
+}
