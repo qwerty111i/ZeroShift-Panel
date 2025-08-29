@@ -15,9 +15,9 @@ jobs:
       - name: Deploy to OCI
         uses: appleboy/scp-action@v1
         with:
-          host: ${{ secrets.OCI_HOST }}
-          username: ${{ secrets.OCI_USERNAME }}
-          key: ${{ secrets.OCI_SSH_KEY }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           source: "backend/server.js"
           target: "/home/ubuntu/zeroshift-panel/backend"
@@ -25,9 +25,9 @@ jobs:
       - name: Restart Server
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.OCI_HOST }}
-          username: ${{ secrets.OCI_USERNAME }}
-          key: ${{ secrets.OCI_SSH_KEY }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
             cd /home/ubuntu/zeroshift-panel/backend
