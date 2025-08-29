@@ -32,4 +32,4 @@ jobs:
           script: |
             cd /home/ubuntu/zeroshift-panel/backend
             npm install
-            pm2 restart zsbackend
+            pm2 restart ZeroShift-Server
